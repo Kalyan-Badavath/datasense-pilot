@@ -6,7 +6,7 @@ def run_data_quality_checks(df):
 
     st.header("Data Quality Checks")
 
-    # ----- DUPLICATE ROWS -----
+    # DUPLICATE ROWS
     st.subheader("Duplicate Rows")
     duplicate_count = df.duplicated().sum()
 
@@ -19,7 +19,7 @@ def run_data_quality_checks(df):
         st.dataframe(duplicate_rows.head(10))
 
 
-    # ----- CONSTANT COLUMNS -----
+    # CONSTANT COLUMNs
     st.subheader("Constant Columns")
     constant_columns = [col for col in df.columns if df[col].nunique() == 1]
 
@@ -31,7 +31,7 @@ def run_data_quality_checks(df):
         st.warning("**Recommendation:** Constant columns add no value to analysis. Consider dropping them.")
 
 
-    # ----- HIGH CARDINALITY COLUMNS -----
+    #HIGH CARDINALITY COLUMNS
     st.subheader("High Cardinality Columns")
     high_cardinality = []
 
@@ -48,7 +48,7 @@ def run_data_quality_checks(df):
         st.warning("**Recommendation:** High cardinality columns may be ID columns or free text. Consider encoding or dropping them.")
 
 
-    # ----- POSSIBLE ID COLUMNS -----
+    # POSSIBLE ID COLUMNS
     st.subheader("Possible Identifier Columns")
     id_columns = []
 
@@ -64,7 +64,7 @@ def run_data_quality_checks(df):
         st.warning("**Recommendation:** ID columns should be excluded from analysis and modeling.")
 
 
-    # ----- ZERO-HEAVY NUMERIC COLUMNS -----
+    # ZERO-HEAVY NUMERIC COLUMNS
     st.subheader("Zero-heavy Numeric Columns")
     zero_heavy_cols = []
     numeric_df = df.select_dtypes(include=['number'])
@@ -85,7 +85,7 @@ def run_data_quality_checks(df):
             st.warning("**Recommendation:** Zero-heavy columns may indicate sparse data or missing values coded as zero.")
 
 
-    # ----- SKEWNESS ANALYSIS -----
+    # SKEWNESS ANALYSIS
     st.subheader("Skewness Analysis")
 
     if numeric_df.empty:
@@ -116,7 +116,7 @@ def run_data_quality_checks(df):
         st.dataframe(skewness_df)
 
 
-    # ----- OUTLIER DETECTION -----
+    # OUTLIER DETECTION
     st.subheader("Outlier Detection (IQR Method)")
 
     if numeric_df.empty:
@@ -152,7 +152,7 @@ def run_data_quality_checks(df):
             st.warning(f"**{len(outlier_data)} columns** have outliers. Review them before modeling.")
 
 
-    # ----- MISSING VALUES -----
+    # MISSING VALUES
     st.subheader("Missing Values Analysis")
 
     missing_summary = pd.DataFrame({
@@ -176,7 +176,7 @@ def run_data_quality_checks(df):
                 st.write(f"- **{row['Column Name']}** has {row['Missing %']}% missing → Safe to **impute or drop rows**")
 
 
-    # ----- OVERALL DATA QUALITY SCORE -----
+    # OVERALL DATA QUALITY SCORE
     st.subheader("Overall Data Quality Score")
 
     score = 100

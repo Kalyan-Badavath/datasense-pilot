@@ -10,7 +10,7 @@ def run_profiling_dashboard(df, primary_columns=None):
     if primary_columns is None:
         primary_columns = {}
 
-    # ----- QUICK DATASET STATS -----
+    # QUICK DATASET STATS
     st.header("Dataset Quick Stats")
 
     total_rows = df.shape[0]
@@ -27,7 +27,7 @@ def run_profiling_dashboard(df, primary_columns=None):
     col5.metric("Missing Values", missing_values)
 
 
-    # ----- AUTOMATIC DATASET SUMMARY -----
+    # AUTOMATIC DATASET SUMMARY
     st.header("Automatic Dataset Summary")
 
     summary_points = []
@@ -55,7 +55,7 @@ def run_profiling_dashboard(df, primary_columns=None):
         st.write(f"- {point}")
 
 
-    # ----- DATASET OVERVIEW -----
+    # DATASET OVERVIEW
     st.header("Dataset Overview")
     st.write(f"Total Rows: {total_rows}")
     st.write(f"Total Columns: {total_columns}")
@@ -63,7 +63,7 @@ def run_profiling_dashboard(df, primary_columns=None):
     st.write(list(df.columns))
 
 
-    # ----- COLUMN METADATA ANALYZER -----
+    # COLUMN METADATA ANALYZER
     st.header("Column Metadata Analyzer")
 
     column_summary = pd.DataFrame({
@@ -76,7 +76,7 @@ def run_profiling_dashboard(df, primary_columns=None):
     st.dataframe(column_summary)
 
 
-    # ----- NUMERIC COLUMN ANALYSIS -----
+    # NUMERIC COLUMN ANALYSIS
     st.header("Numeric Column Analysis")
 
     if numeric_df.empty:
@@ -86,7 +86,7 @@ def run_profiling_dashboard(df, primary_columns=None):
         st.dataframe(numeric_summary)
 
 
-    # ----- CORRELATION ANALYSIS -----
+    # CORRELATION ANALYSIS
     st.header("Correlation Analysis")
 
     correlation_matrix = pd.DataFrame()
@@ -106,7 +106,7 @@ def run_profiling_dashboard(df, primary_columns=None):
         st.plotly_chart(fig, key=f"correlation_heatmap_{len(correlation_matrix.columns)}")
 
 
-    # ----- OUTLIER AND DISTRIBUTION ANALYSIS -----
+    # OUTLIER AND DISTRIBUTION ANALYSIS
     st.header("Outlier and Distribution Analysis")
 
     if numeric_df.empty:
@@ -133,7 +133,7 @@ def run_profiling_dashboard(df, primary_columns=None):
             )
             st.plotly_chart(fig_box, key=f"box_{col}")
 
-    # ----- AUTOMATED INSIGHT SUMMARY -----
+    # AUTOMATED INSIGHT SUMMARY
     st.header("Automated Insight Summary")
 
     insights = []
@@ -173,7 +173,7 @@ def run_profiling_dashboard(df, primary_columns=None):
         st.write(f"- {insight}")
 
 
-    # ----- TIME TREND ANALYSIS -----
+    # TIME TREND ANALYSIS
     st.header("Time Trend Analysis")
 
     date_col = primary_columns.get("date")
@@ -198,7 +198,7 @@ def run_profiling_dashboard(df, primary_columns=None):
         st.info("Time trend analysis requires a detected date column and a numeric metric column.")
 
 
-    # ----- TOP PERFORMERS / RANKING ANALYSIS -----
+    # TOP PERFORMERS / RANKING ANALYSIS
     st.header("Top Performers / Ranking Analysis")
 
     category_col = primary_columns.get("category")
@@ -229,7 +229,7 @@ def run_profiling_dashboard(df, primary_columns=None):
         st.info("Top performers analysis requires a detected category column and a numeric metric column.")
 
 
-    # ----- CATEGORICAL COLUMN ANALYSIS -----
+    # CATEGORICAL COLUMN ANALYSIS
     st.header("Categorical Column Analysis")
 
     categorical_df = df.select_dtypes(include=['object'])
@@ -246,7 +246,7 @@ def run_profiling_dashboard(df, primary_columns=None):
             st.dataframe(top_values)
 
 
-    # ----- MISSING VALUES ANALYSIS -----
+    # MISSING VALUES ANALYSIS
     st.header("Missing Values Analysis")
 
     missing_summary = pd.DataFrame({
@@ -262,13 +262,11 @@ def run_profiling_dashboard(df, primary_columns=None):
     else:
         st.dataframe(missing_summary)
 
-
-    # ----- DATASET PREVIEW -----
+    #DATASET PREVIEW
     st.header("Dataset Preview")
     st.dataframe(df.head())
 
-
-    # ----- ADVANCED EDA REPORT -----
+    # ADVANCED EDA REPORT
     st.header("Advanced EDA Report")
 
     if st.button("Generate Full EDA Report"):

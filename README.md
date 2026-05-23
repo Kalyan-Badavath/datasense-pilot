@@ -36,6 +36,20 @@ No coding required. No manual configuration. Just upload and explore.
 
 ---
 
+## Screenshots
+
+### Dataset Understanding
+![Dataset Understanding](screenshots/understanding.png)
+
+### Profiling Dashboard
+![Profiling Dashboard](screenshots/profiling.png)
+
+### Data Quality
+![Data Quality](screenshots/quality.png)
+
+### Ask Questions
+![Ask Questions](screenshots/questions.png)
+
 ## How It Works
 User uploads dataset
 ↓

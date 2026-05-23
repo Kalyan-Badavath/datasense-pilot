@@ -177,7 +177,7 @@ http://localhost:8501
 
 **Kalyan Badavath**
 - GitHub: [@Kalyan-Badavath](https://github.com/Kalyan-Badavath)
-- LinkedIn: (https://www.linkedin.com/in/kalyan-badavath-589196195ks/)
+- LinkedIn: [Kalyan Badavath](https://www.linkedin.com/in/kalyan-badavath-589196195ks/)
 
 ---
 

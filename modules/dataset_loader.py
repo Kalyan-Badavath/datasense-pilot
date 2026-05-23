@@ -12,7 +12,7 @@ def load_dataset():
         st.warning("Please upload any data file to start the analysis.")
         st.stop()
 
-    # ----- FILE SIZE WARNING -----
+    # FILE SIZE WARNING
     file_size_mb = uploaded_file.size / (1024 * 1024)
 
     if file_size_mb > 50:
@@ -40,7 +40,7 @@ def load_dataset():
         st.info(f"{str(e)}")
         st.stop()
 
-    # ----- AUTO DATE DETECTION -----
+    # AUTO DATE DETECTION
     # handles both uppercase and lowercase YEAR/MONTH columns
     year_col = next((col for col in df.columns if col.lower() == "year"), None)
     month_col = next((col for col in df.columns if col.lower() == "month"), None)
